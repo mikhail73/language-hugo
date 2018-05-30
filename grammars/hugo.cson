@@ -1,6 +1,6 @@
-'scopeName': 'source.hugo'
+'scopeName': 'text.html.hugo'
 'name': 'Hugo'
-'fileTypes': ['md', 'mmark', 'html']
+'fileTypes': ['html']
 'foldingStartMarker':'({{(.*)range(.*)}})|({{(.*)if(.*))'
 'foldingStopMarker':'({{(.*)end(.*)}})'
 
@@ -8,61 +8,45 @@
   {
     'include': 'text.html.basic'
   }
-  {
-    'include': 'source.gfm'
-  }
-  {
-    'begin': '{{<|{{%'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.begin.hugo'
-    'end': '>}}|%}}'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.end.hugo'
-    'patterns': [
-      {
-        'match': '\\b([^\\s^\\"]+)\\b'
-        'name': 'support.function.hugo'
-      }
 
-    ]
-  }
   {
     'begin': '{{\\/\\*'
     'end': '\\*\\/}}'
     'name': 'comment.block.hugo'
   }
   {
-    'begin': '{{-|{{'
+    'begin': '{{-?'
     'beginCaptures':
       '0':
         'name': 'punctuation.section.embedded.begin.hugo'
-    'end': '}}|-}}'
+    'end': '-?}}'
     'endCaptures':
       '0':
         'name': 'punctuation.section.embedded.end.hugo'
     'patterns': [
       {
-        'match': '\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+)|(true|false|nil))\\b'
+        'match': '\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))\\b'
         'name': 'constant.numeric.hugo'
       }
       {
-        'match': '\\b(if|else|range|template|with|end|define|where)\\b'
-        'name': "keyword.control.hugo"
+        'match': '\\b(true|false|nil)\\b'
+        'name': 'constant.language.hugo'
+      }
+      {
+        'match': '\\b(if|else|range|template|with|end|define|where|partial|partialCached)\\b'
+        'name': 'keyword.control.hugo'
       }
       {
         'name': 'support.function.builtin.gotemplate'
-        'match': '\\b(and|call|html|index|js|len|not|or|print|printf|println|urlquery|eq|ne|lt|le|gt|ge)\\b'
+        'match': '\\b(and|call|html|index|js|len|not|or|print|printf|println|urlquery|eq|ne|lt|le|gt|ge|fileExists)\\b'
       }
       {
-        'begin': '\\$\\.'
-        'end': '\\s'
-        'name': 'support.function.builtin.hugo'
+        'match': '\\.\\w+'
+        'name': 'variable.other.hugo'
       }
       {
-        'match': '[.$][\\w]*'
-        'name': 'variable.hugo'
+        'match': '\\$\\w+'
+        'name': 'constant.other.hugo'
       }
       {
         'match': ':='
@@ -81,35 +65,9 @@
       {
         'begin': '\"'
         'end': '\"'
-        'name': 'string.quoted.single.hugo'
+        'name': 'string.quoted.double.hugo'
       }
 
-    ]
-  }
-  {
-    'begin': '\\+\\+\\+'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.begin.hugo'
-    'end': '\\+\\+\\+'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.end.hugo'
-    'patterns': [
-      {
-        'match': '\\b([^\\s^\\"]+)\\b'
-        'name': 'constant.character.hugo'
-      }
-      {
-        'begin': '\''
-        'end': '\''
-        'name': 'string.quoted.single.hugo'
-      }
-      {
-        'begin': '\"'
-        'end': '\"'
-        'name': 'string.quoted.single.hugo'
-      }
     ]
   }
 ]
